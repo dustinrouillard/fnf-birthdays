@@ -1,0 +1,49 @@
+{
+  "name": "birthday",
+  "description": "Manage your birthday for fnf birthdays",
+  "options": [
+    {
+      "type": 1,
+      "name": "set",
+      "description": "Set your birthday to become wise and magical",
+      "options": [
+        {
+          "type": 3,
+          "required": true,
+          "name": "month",
+          "description": "Month you were born",
+          "choices": [
+            { "name": "January", "value": "1" },
+            { "name": "Febuary", "value": "2" },
+            { "name": "March", "value": "3" },
+            { "name": "April", "value": "4" },
+            { "name": "May", "value": "5" },
+            { "name": "June", "value": "6" },
+            { "name": "July", "value": "7" },
+            { "name": "August", "value": "8" },
+            { "name": "September", "value": "9" },
+            { "name": "October", "value": "10" },
+            { "name": "November", "value": "11" },
+            { "name": "December", "value": "12" }
+          ]
+        },
+        {
+          "type": 4,
+          "required": true,
+          "name": "date",
+          "description": "Day of the month you were born"
+        },
+        {
+          "type": 4,
+          "name": "year",
+          "description": "Year, for calculating your age"
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "name": "delete",
+      "description": "Remove your birthday from fnf birthdays"
+    }
+  ]
+}

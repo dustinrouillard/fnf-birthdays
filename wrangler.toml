@@ -1,0 +1,27 @@
+type = "webpack"
+webpack_config = "webpack.config.js"
+
+zone_id = "348792876bb474a7cadf69be26c00b5c"
+account_id = "3e4e267fb0f575f02c3d6ecd0c65f3cd"
+
+name = "fnf-birthday"
+routes = ["igd.dstn.to/*"]
+workers_dev = false
+
+kv_namespaces = [
+  { binding = "BIRTHDAY_FNF", id = "d96f8c41527c405285217d5f545b614e", preview_id = "d96f8c41527c405285217d5f545b614e" }
+]
+
+[triggers]
+crons = ["0 0 * * *"]
+
+[miniflare]
+kv_persist = "redis://localhost:6379?db=8"
+
+[env.dev]
+name = "fnf-birthday-dev"
+workers_dev = true
+
+kv_namespaces = [
+  { binding = "BIRTHDAY_FNF", id = "d96f8c41527c405285217d5f545b614e", preview_id = "d96f8c41527c405285217d5f545b614e" }
+]

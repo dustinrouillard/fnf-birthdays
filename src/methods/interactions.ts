@@ -35,7 +35,7 @@ export async function DiscordInteraction(request: ParsedRequest<{ Body: DiscordI
                 data: {
                   flags: 64,
                   embeds: [{
-                    title: 'Birthday set!', description: `Your birthday has been set as **${date.getMonth() + 1}/${date.getDate()}**\n\n${hasYear ? `You gave us the year as **${date.getFullYear()}** so we'll calcuate your age when the birthday message goes out in the birthdays channel, do this command again without the year if you would not like to have your age in the greeting.` : 'You didn\'t give us a year, so we won\t be able to calcuate your age when we wish you a happy birthday, do this command again if you\'d like to have your age in the greeting.'}`,
+                    title: 'Birthday set!', description: `Your birthday has been set as **${date.getMonth() + 1}/${date.getDate()}**\n\n${hasYear ? `You gave us the year as **${date.getFullYear()}** so we'll calcuate your age when the birthday message goes out in the birthdays channel, do this command again without the year if you would not like to have your age in the greeting.` : 'You didn\'t give us a year, so we won\'t be able to calcuate your age when we wish you a happy birthday, do this command again if you\'d like to have your age in the greeting.'}`,
                     color: 12387127,
                     footer: { text: 'dstn.to - fnf birthdays' }
                   }]

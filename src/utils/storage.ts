@@ -1,5 +1,4 @@
 import { BirthdayEntry } from "../types/Birthday";
-import { getLaTime } from "./time";
 
 export async function getDateForUser(user_id: string): Promise<BirthdayEntry | null> {
   const entry = await BIRTHDAY_FNF.get<BirthdayEntry | null>(`birthday/${user_id}`, { type: 'json' });
@@ -11,17 +10,15 @@ export async function storeDateForUser(user_id: string, birthday: Date, has_year
   if (existing && new Date(existing.birthdate).getTime() != birthday.getTime())
     await removeBirthdayForUser(user_id);
 
-  const laTime = getLaTime(birthday);
-
   await BIRTHDAY_FNF.put(`birthday/${user_id}`, JSON.stringify({
     discord_id: user_id,
     birthdate: birthday.getTime(),
     has_year
   }));
 
-  const keys = await BIRTHDAY_FNF.get<string[]>(`birthdays/${laTime.getMonth() + 1}-${laTime.getDate()}`, { type: 'json' }) || [];
+  const keys = await BIRTHDAY_FNF.get<string[]>(`birthdays/${birthday.getMonth() + 1}-${birthday.getDate()}`, { type: 'json' }) || [];
   if (!keys.includes(user_id)) keys.push(user_id);
-  await BIRTHDAY_FNF.put(`birthdays/${laTime.getMonth() + 1}-${laTime.getDate()}`, JSON.stringify(keys));
+  await BIRTHDAY_FNF.put(`birthdays/${birthday.getMonth() + 1}-${birthday.getDate()}`, JSON.stringify(keys));
 
   return {
     discord_id: user_id,
@@ -31,7 +28,7 @@ export async function storeDateForUser(user_id: string, birthday: Date, has_year
 }
 
 export async function getBirthdaysToday(): Promise<BirthdayEntry[]> {
-  const dayToCheck = getLaTime(new Date());
+  const dayToCheck = new Date();
 
   const entries: BirthdayEntry[] = [];
   const keys = await BIRTHDAY_FNF.get<string[]>(`birthdays/${dayToCheck.getMonth() + 1}-${dayToCheck.getDate()}`, { type: 'json' }) || [];
@@ -45,7 +42,7 @@ export async function getBirthdaysToday(): Promise<BirthdayEntry[]> {
 }
 
 export async function getBirthdaysYesterday(): Promise<BirthdayEntry[]> {
-  const dayToCheck = getLaTime(new Date());
+  const dayToCheck = new Date();
   dayToCheck.setDate(dayToCheck.getDate() - 1);
 
   const entries: BirthdayEntry[] = [];
